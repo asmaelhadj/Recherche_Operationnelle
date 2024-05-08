@@ -92,6 +92,32 @@
         "Price": 0.0,
         "Worker_time": 0,
         "Machine_time": 0,
+        "resources_needed": [
+            {
+                "name": "Wooden Blocks",
+                "quantity": 3
+            }
+        ]
+    },
+    {
+        "name": "ccc",
+        "Price": 2.0,
+        "Worker_time": 1,
+        "Machine_time": 1,
+        "resources_needed": []
+    },
+    {
+        "name": "Sabat",
+        "Price": 13.0,
+        "Worker_time": 3,
+        "Machine_time": 2,
+        "resources_needed": []
+    },
+    {
+        "name": "kjj",
+        "Price": 0.0,
+        "Worker_time": 0,
+        "Machine_time": 0,
         "resources_needed": []
     }
 ]

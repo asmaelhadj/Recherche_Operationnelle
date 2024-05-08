@@ -46,7 +46,7 @@ class Exercise1(QMainWindow):
         self.product_management_tab = QWidget()
         self.resource_management_tab = QWidget()
         self.tab_widget.addTab(self.product_management_tab, "Product Management")
-        self.tab_widget.addTab(self.resource_management_tab, "Resource Management")
+        self.tab_widget.addTab(self.resource_management_tab, "Materials Management")
 
         # Initialize UI Components for Each Tab
         self.setup_product_management_tab()
@@ -98,7 +98,6 @@ class Exercise1(QMainWindow):
         # Form layout
         self.product_form_layout = QHBoxLayout()
         self.product_management_layout.addLayout(self.product_form_layout)
-
         # Form fields
         self.name_input = QLineEdit()
         self.selling_price_input = QDoubleSpinBox()
@@ -128,7 +127,7 @@ class Exercise1(QMainWindow):
         self.product_form_layout.addWidget(QLabel("Machine Time:"))
         self.product_form_layout.addWidget(self.machine_time_input)
 
-        self.manage_resources_btn = QPushButton("Manage Resources")
+        self.manage_resources_btn = QPushButton("Needed Materials")
         self.manage_resources_btn.setFont(QFont("Montserrat", 7))
         self.manage_resources_btn.setFixedSize(100, 40)
         self.manage_resources_btn.setStyleSheet(
@@ -148,16 +147,25 @@ class Exercise1(QMainWindow):
         self.product_management_layout.addWidget(self.delete_button)
 
         # Placeholder for Optimization button (Gurobi integration)
-        self.optimize_button = QPushButton("Optimize Production Plan")
+        self.optimize_button = QPushButton("Optimize")
         self.optimize_button.clicked.connect(self.optimize_production_plan)
         self.product_management_layout.addWidget(self.optimize_button)
 
     def setup_resource_table(self):
-        self.resource_table = QTableWidget()
+        self.resource_table_widget = QLabel(self.resource_management_tab)  # Use QLabel as the container
+        self.resource_table_widget.setGeometry(10, 10, 500, 200)  # Adjust the geometry as needed
+
+        self.resource_table = QTableWidget(self.resource_table_widget)
+        self.resource_table.setGeometry(250, 0, 500, 300)  # Match geometry with the parent
         self.resource_table.setColumnCount(2)
         self.resource_table.setHorizontalHeaderLabels(["Resource Name", "Quantity Available"])
-        self.resource_management_layout.addWidget(self.resource_table)
 
+        # Load and set background image
+        pixmap = QPixmap(TABLE_BACKGROUND_IMAGE)
+        self.resource_table_widget.setPixmap(pixmap.scaled(self.resource_table.size()))  # Set background image
+        self.resource_table_widget.setScaledContents(True)
+
+        self.resource_management_layout.addWidget(self.resource_table_widget)
     def manage_product_resources(self):
         self.current_product = {"name": self.name_input.text(), "Price": self.selling_price_input.value(),
                                 "Worker_time": self.human_work_time_input.value(),
@@ -183,20 +191,23 @@ class Exercise1(QMainWindow):
                 lambda: self.update_button_state(self.resource_fields, self.add_resource_button,
                                                  "Please enter a valid name and quantity to add a resource."))
 
-        self.resource_form_layout.addWidget(QLabel("Resource Name:"))
+        self.resource_form_layout.addWidget(QLabel("Material Name:"))
         self.resource_form_layout.addWidget(self.resource_name_input)
 
         self.resource_form_layout.addWidget(QLabel("Quantity Available:"))
         self.resource_form_layout.addWidget(self.quantity_available_input)
 
-        self.add_resource_button = QPushButton("Add Resource")
+        self.add_resource_button = QPushButton("Add Material")
         self.add_resource_button.clicked.connect(self.add_resource)
+        self.add_resource_button.setStyleSheet(f"background-color: {ADD_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
         self.resource_management_layout.addWidget(self.add_resource_button)
         self.update_button_state(self.resource_fields, self.add_resource_button,
                                  "Please enter a valid name and quantity to add a resource.")
 
-        self.delete_resource_button = QPushButton("Delete Selected Resource")
+        self.delete_resource_button = QPushButton("Delete Selected Materials")
         self.delete_resource_button.clicked.connect(self.delete_resource)
+        self.delete_resource_button.setStyleSheet(
+            f"background-color: {REMOVE_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
         self.resource_management_layout.addWidget(self.delete_resource_button)
 
     def load_data_into_ui(self):

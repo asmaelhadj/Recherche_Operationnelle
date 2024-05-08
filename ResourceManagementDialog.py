@@ -1,6 +1,20 @@
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QTableWidget, QPushButton, QHBoxLayout, QComboBox, QSpinBox)
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QTableWidget, QPushButton, QHBoxLayout, QComboBox, QSpinBox, QLabel)
 
 from read_files import add_resource_to_product
+
+REMOVE_BUTTON_COLOR = "#1AA7EC"
+ADD_BUTTON_COLOR = "#1E2F97"
+CALCULATE_BUTTON_COLOR = "#2980B9"
+BUTTON_TEXT_COLOR = "white"
+FONT_TYPE = "Roboto"
+WINDOW_BACKGROUND_COLOR = "#ECF0F1"
+NODE_PAIR_BACKGROUND_COLOR = "#D5DBDB"
+INPUT_TEXT_COLOR = "#34495E"
+LABEL_COLOR = "#34495E"
+BIG_LABEL_COLOR = "#2C3E50"
+LIGHT_BG_COLOR = "#FFFFFF"
+TABLE_BACKGROUND_IMAGE = "background_image.jpg"  # Path to the background image
 
 
 class ResourceManagementDialog(QDialog):
@@ -11,6 +25,13 @@ class ResourceManagementDialog(QDialog):
         self.setGeometry(100, 100, 1000, 600)
 
         self.setWindowTitle("Manage Product Resources")
+
+        # Add background image
+        background_label = QLabel(self)
+        pixmap = QPixmap(TABLE_BACKGROUND_IMAGE)
+        background_label.setPixmap(pixmap)
+        background_label.setGeometry(0, 0, 1000, 600)
+
         layout = QVBoxLayout(self)
 
         # Table for adding/removing resources and specifying quantities
@@ -22,13 +43,16 @@ class ResourceManagementDialog(QDialog):
         # Button to add a new row to specify a resource
         add_resource_btn = QPushButton("Add Resource")
         add_resource_btn.clicked.connect(self.add_resource_row)
+        add_resource_btn.setStyleSheet(f"background-color: {ADD_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
         layout.addWidget(add_resource_btn)
 
         # OK and Cancel buttons
         ok_btn = QPushButton("OK")
         ok_btn.clicked.connect(self.apply_changes)
+        ok_btn.setStyleSheet(f"background-color: {CALCULATE_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
         cancel_btn = QPushButton("Cancel")
         cancel_btn.clicked.connect(self.reject)
+        cancel_btn.setStyleSheet(f"background-color: {REMOVE_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
 
         button_layout = QHBoxLayout()
         button_layout.addWidget(ok_btn)

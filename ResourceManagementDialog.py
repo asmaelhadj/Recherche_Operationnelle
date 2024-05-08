@@ -1,5 +1,6 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QTableWidget, QPushButton, QHBoxLayout, QComboBox, QSpinBox, QLabel)
+from PyQt5 import QtGui
 
 from read_files import add_resource_to_product
 
@@ -23,7 +24,7 @@ class ResourceManagementDialog(QDialog):
         self.current_product = current_product
         self.available_resources = available_resources
         self.setGeometry(100, 100, 1000, 600)
-
+        self.setWindowIcon(QtGui.QIcon('icon.png'))
         self.setWindowTitle("Manage Product Resources")
 
         # Add background image

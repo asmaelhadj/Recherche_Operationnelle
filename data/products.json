@@ -1,0 +1,97 @@
+[
+    {
+        "name": "Wooden Chair",
+        "Price": 50,
+        "Worker_time": 2,
+        "Machine_time": 1,
+        "resources_needed": [
+            {
+                "name": "Wooden Planks",
+                "quantity": 4
+            },
+            {
+                "name": "Nails",
+                "quantity": 8
+            }
+        ]
+    },
+    {
+        "name": "Wooden Table",
+        "Price": 120,
+        "Worker_time": 3,
+        "Machine_time": 2,
+        "resources_needed": [
+            {
+                "name": "Wooden Planks",
+                "quantity": 8
+            },
+            {
+                "name": "Nails",
+                "quantity": 16
+            }
+        ]
+    },
+    {
+        "name": "Wooden Shelf",
+        "Price": 80,
+        "Worker_time": 2,
+        "Machine_time": 1,
+        "resources_needed": [
+            {
+                "name": "Wooden Planks",
+                "quantity": 6
+            },
+            {
+                "name": "Nails",
+                "quantity": 12
+            }
+        ]
+    },
+    {
+        "name": "Wooden Toy Car",
+        "Price": 15,
+        "Worker_time": 1,
+        "Machine_time": 0.5,
+        "resources_needed": [
+            {
+                "name": "Wooden Blocks",
+                "quantity": 2
+            },
+            {
+                "name": "Wheels",
+                "quantity": 4
+            },
+            {
+                "name": "Nails",
+                "quantity": 4
+            }
+        ]
+    },
+    {
+        "name": "Wooden Picture Frame",
+        "Price": 20,
+        "Worker_time": 1,
+        "Machine_time": 0.5,
+        "resources_needed": [
+            {
+                "name": "Wooden Planks",
+                "quantity": 2
+            },
+            {
+                "name": "Glass Sheet",
+                "quantity": 1
+            },
+            {
+                "name": "Nails",
+                "quantity": 4
+            }
+        ]
+    },
+    {
+        "name": "",
+        "Price": 0.0,
+        "Worker_time": 0,
+        "Machine_time": 0,
+        "resources_needed": []
+    }
+]

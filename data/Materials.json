@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Wooden Planks",
+    "quantity_available": 2000
+  },
+  {
+    "name": "Nails",
+    "quantity_available": 5000
+  },
+  {
+    "name": "Wooden Blocks",
+    "quantity_available": 800
+  },
+  {
+    "name": "Wheels",
+    "quantity_available": 1200
+  },
+  {
+    "name": "Glass Sheet",
+    "quantity_available": 1000
+  }
+]

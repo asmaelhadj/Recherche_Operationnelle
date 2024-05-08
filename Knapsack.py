@@ -119,11 +119,12 @@ class KnapsackApp(QWidget):
         result_str += "\n"
         self.resultTextEdit.setPlainText(result_str)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
-    ex = KnapsackApp()
-    ex.show()
+    ex2_window = KnapsackApp()
+    ex2_window.show()
     sys.exit(app.exec_())
+
 
 
     

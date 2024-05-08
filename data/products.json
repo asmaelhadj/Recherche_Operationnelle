@@ -86,6 +86,8 @@
                 "quantity": 4
             }
         ]
+<<<<<<< HEAD
+=======
     },
     {
         "name": "",
@@ -119,5 +121,6 @@
         "Worker_time": 0,
         "Machine_time": 0,
         "resources_needed": []
+>>>>>>> 36de74794a1ca51428ee0fc824bb54a4c99bb36d
     }
 ]

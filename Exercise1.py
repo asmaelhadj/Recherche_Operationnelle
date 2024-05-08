@@ -5,7 +5,8 @@ from PyQt5.QtGui import QFont, QPixmap
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QTableWidget, QSpinBox, QPushButton, \
     QVBoxLayout, QHBoxLayout, QMainWindow, QTabWidget, QLineEdit, QTableWidgetItem, \
     QDialog, QHeaderView, QDoubleSpinBox
-from read_files import load_products, load_resources, add_product, add_resource
+from read_files import load_products, load_resources, add_product, add_resource, delete_product_from_json, \
+    delete_resource_from_json
 
 from ResourceManagementDialog import ResourceManagementDialog
 def exit_program():
@@ -251,11 +252,15 @@ class Exercise1(QMainWindow):
     def delete_resource(self):
         indices = self.resource_table.selectionModel().selectedRows()
         for index in sorted(indices, reverse=True):
+            resource_name = self.product_table.item(index.row(), 0).text()
+            delete_resource_from_json(resource_name)
             self.resource_table.removeRow(index.row())
 
     def delete_product(self):
         indices = self.product_table.selectionModel().selectedRows()
         for index in sorted(indices, reverse=True):
+            product_name = self.product_table.item(index.row(), 0).text()
+            delete_product_from_json(product_name)
             self.product_table.removeRow(index.row())
 
     @staticmethod

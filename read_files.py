@@ -77,9 +77,13 @@ def add_resource_to_product(product_name, resource_name, quantity):
 
 
 def delete_item_from_json(file_path, item_name):
-    items = load_json_data(file_path)
-    items = [item for item in items if item.get('name') != item_name]
-    save_json_data(file_path, items)
+    try:
+        items = load_json_data(file_path)
+        items = [item for item in items if item.get('name') != item_name]
+        save_json_data(file_path, items)
+    except Exception as e:
+        print(f"Error deleting item from {file_path}: {e}")
+
 
 
 def delete_resource_from_json(resource_name):

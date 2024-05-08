@@ -1,7 +1,5 @@
 import sys
-
 from PyQt5 import QtGui
-
 from PL1 import solve_optimization
 from PyQt5.QtGui import QFont, QPixmap
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QTableWidget, QSpinBox, QPushButton, \

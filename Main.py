@@ -4,8 +4,7 @@ from PyQt5.QtGui import QPixmap, QFont, QPalette, QBrush
 from PyQt5.QtCore import Qt
 from PyQt5 import QtGui
 from Exercise1 import Exercise1
-from Knapsack import KnapsackApp
-
+import subprocess
 
 def exit_program():
     app.quit()
@@ -56,7 +55,7 @@ class MainWindow(QMainWindow):
         # Example buttons for exercises
         exercise_names = [
             "PL : Resources management",
-            "PLNE1 : Knapsack Problem"
+            "PLNE 1 : Knapsack Problem"
         ]
         for exercise_name in exercise_names:
             exercise_button = QPushButton(exercise_name, self)
@@ -105,9 +104,9 @@ class MainWindow(QMainWindow):
         if case == "PL : Resources management":
             self.exercice1 = Exercise1()
             self.exercice1.show()
-        elif case == "PLNE1 : Knapsack Problem":
-            self.exercice2 = KnapsackApp()
-            self.exercice2.show()
+        elif case == "PLNE 1 : Knapsack Problem":
+            command = [sys.executable, "./Knapsack.py"]
+            subprocess.run(command)
         else:
             pass
 

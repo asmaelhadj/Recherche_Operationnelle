@@ -55,7 +55,8 @@ class MainWindow(QMainWindow):
         # Example buttons for exercises
         exercise_names = [
             "PL : Resources management",
-            "PLNE 1 : Knapsack Problem"
+            "PLNE1 : Knapsack Problem",
+            "PLNE 2 : Shortest Path",
         ]
         for exercise_name in exercise_names:
             exercise_button = QPushButton(exercise_name, self)
@@ -104,9 +105,14 @@ class MainWindow(QMainWindow):
         if case == "PL : Resources management":
             self.exercice1 = Exercise1()
             self.exercice1.show()
-        elif case == "PLNE 1 : Knapsack Problem":
-            command = [sys.executable, "./Knapsack.py"]
-            subprocess.run(command)
+        elif case == "PLNE1 : Knapsack Problem":
+            from Knapsack import KnapsackApp
+            self.exercice2 = KnapsackApp()
+            self.exercice2.show()
+        elif case == "PLNE 2 : Shortest Path":
+            from Exercise3 import Exercise3
+            self.exercise3 = Exercise3()
+            self.exercise3.show()
         else:
             pass
 

@@ -8,7 +8,7 @@ class solve_optimization():
         self.products = load_products()
         self.resources = load_resources()
 
-        # TODO: Change this to read from file
+
         self.nb_employees = 200
         self.nb_machines = 100
 
@@ -32,7 +32,7 @@ class solve_optimization():
 
         # Machine time constraint
         self.model.addConstr(quicksum(
-            self.products[i]["Machine_time"] * x[i] for i in range(len(self.products))) <= 16 * 60 * self.nb_machines,
+            self.products[i]["Machine_time"] * x[i] for i in range(len(self.products))) <= 16 * self.nb_machines,
                              "MachineTimeLimit")
 
         for resource in self.resources:

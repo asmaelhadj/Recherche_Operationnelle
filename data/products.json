@@ -87,11 +87,4 @@
             }
         ]
     },
-    {
-        "name": "",
-        "Price": 0.0,
-        "Worker_time": 0,
-        "Machine_time": 0,
-        "resources_needed": []
-    }
 ]

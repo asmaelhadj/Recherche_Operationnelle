@@ -15,7 +15,7 @@ INPUT_TEXT_COLOR = "#34495E"
 LABEL_COLOR = "#34495E"
 BIG_LABEL_COLOR = "#2C3E50"
 LIGHT_BG_COLOR = "#FFFFFF"
-TABLE_BACKGROUND_IMAGE = "background_image.jpg"  # Path to the background image
+TABLE_BACKGROUND_IMAGE = "background_image.jpg" 
 
 
 class ResourceManagementDialog(QDialog):
@@ -41,19 +41,33 @@ class ResourceManagementDialog(QDialog):
         self.resources_table.setHorizontalHeaderLabels(["Resource", "Quantity", "Remove"])
         layout.addWidget(self.resources_table)
 
-        # Button to add a new row to specify a resource
+            # Button to add a new row to specify a resource
         add_resource_btn = QPushButton("Add Resource")
         add_resource_btn.clicked.connect(self.add_resource_row)
-        add_resource_btn.setStyleSheet(f"background-color: {ADD_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
+        add_resource_btn.setStyleSheet(
+            "QPushButton { background-color: #1C1678; color: white; border: none; border-radius: 10px; font-size: 10pt; padding: 11px; }"
+            "QPushButton:hover { background-color: #0E46A3; }"
+        )
         layout.addWidget(add_resource_btn)
 
-        # OK and Cancel buttons
+        # OK button
         ok_btn = QPushButton("OK")
         ok_btn.clicked.connect(self.apply_changes)
-        ok_btn.setStyleSheet(f"background-color: {CALCULATE_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
+        ok_btn.setStyleSheet(
+            "QPushButton { background-color: #114232; color: white; border: none; border-radius: 10px; font-size: 10pt; padding: 11px; }"
+            "QPushButton:hover { background-color: #87A922; }"
+        )
+        layout.addWidget(ok_btn)
+
+        # Cancel button
         cancel_btn = QPushButton("Cancel")
         cancel_btn.clicked.connect(self.reject)
-        cancel_btn.setStyleSheet(f"background-color: {REMOVE_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
+        cancel_btn.setStyleSheet(
+            "QPushButton { background-color: #E72929; color: white; border: none; border-radius: 10px; font-size: 10pt; padding: 11px; }"
+            "QPushButton:hover { background-color: #EFBC9B; }"
+        )
+        layout.addWidget(cancel_btn)
+
 
         button_layout = QHBoxLayout()
         button_layout.addWidget(ok_btn)

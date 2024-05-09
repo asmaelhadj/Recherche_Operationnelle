@@ -110,9 +110,9 @@ class Exercise1(QMainWindow):
         self.name_input = QLineEdit()
         self.selling_price_input = QDoubleSpinBox()
         self.selling_price_input.setMaximum(999999.99)
-        self.human_work_time_input = QSpinBox()
+        self.human_work_time_input = QDoubleSpinBox()
         self.human_work_time_input.setMaximum(999999)
-        self.machine_time_input = QSpinBox()
+        self.machine_time_input = QDoubleSpinBox()
         self.machine_time_input.setMaximum(999999)
 
         self.product_fields = [self.name_input, self.selling_price_input, self.human_work_time_input,
@@ -217,7 +217,7 @@ class Exercise1(QMainWindow):
         self.resource_form_layout.addLayout(left_half_layout)
 
         self.resource_name_input = QLineEdit()
-        self.quantity_available_input = QSpinBox()
+        self.quantity_available_input = QDoubleSpinBox()
         self.quantity_available_input.setMaximum(99999999)
         self.resource_fields = [self.resource_name_input, self.quantity_available_input]
 

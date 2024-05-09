@@ -85,7 +85,6 @@ def delete_item_from_json(file_path, item_name):
         print(f"Error deleting item from {file_path}: {e}")
 
 
-
 def delete_resource_from_json(resource_name):
     delete_item_from_json(RESOURCES_FILE_PATH, resource_name)
 

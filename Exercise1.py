@@ -45,8 +45,8 @@ class Exercise1(QMainWindow):
         # Create tabs
         self.product_management_tab = QWidget()
         self.resource_management_tab = QWidget()
-        self.tab_widget.addTab(self.product_management_tab, "Product Management")
-        self.tab_widget.addTab(self.resource_management_tab, "Materials Management")
+        self.tab_widget.addTab(self.product_management_tab, "Products")
+        self.tab_widget.addTab(self.resource_management_tab, "Stock")
 
         # Initialize UI Components for Each Tab
         self.setup_product_management_tab()
@@ -121,7 +121,7 @@ class Exercise1(QMainWindow):
         self.product_form_layout.addWidget(QLabel("Selling Price:"))
         self.product_form_layout.addWidget(self.selling_price_input)
 
-        self.product_form_layout.addWidget(QLabel("Human Work Time:"))
+        self.product_form_layout.addWidget(QLabel("Worker Time:"))
         self.product_form_layout.addWidget(self.human_work_time_input)
 
         self.product_form_layout.addWidget(QLabel("Machine Time:"))
@@ -263,7 +263,7 @@ class Exercise1(QMainWindow):
     def delete_resource(self):
         indices = self.resource_table.selectionModel().selectedRows()
         for index in sorted(indices, reverse=True):
-            resource_name = self.product_table.item(index.row(), 0).text()
+            resource_name = self.resource_table.item(index.row(), 0).text()
             delete_resource_from_json(resource_name)
             self.resource_table.removeRow(index.row())
 

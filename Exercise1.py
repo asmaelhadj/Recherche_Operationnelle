@@ -130,8 +130,8 @@ class Exercise1(QMainWindow):
         left_box_layout.addWidget(self.selling_price_input)
 
 
-        self.product_form_layout.addWidget(QLabel("Worker Time:"))
-        self.product_form_layout.addWidget(self.human_work_time_input)
+        left_box_layout.addWidget(QLabel("Worker Time:"))
+        left_box_layout.addWidget(self.human_work_time_input)
 
 
         left_box_layout.addWidget(QLabel("Machine Time:"))

@@ -18,5 +18,17 @@
     {
         "name": "Glass Sheet",
         "quantity_available": 1000
+    },
+    {
+        "name": "yy",
+        "quantity_available": 33
+    },
+    {
+        "name": "gg",
+        "quantity_available": 0
+    },
+    {
+        "name": "ee",
+        "quantity_available": 0
     }
 ]

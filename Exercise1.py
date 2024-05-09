@@ -48,6 +48,7 @@ class Exercise1(QMainWindow):
         self.tab_widget.addTab(self.product_management_tab, "Product Management")
         self.tab_widget.addTab(self.resource_management_tab, "Materials Management")
 
+
         # Initialize UI Components for Each Tab
         self.setup_product_management_tab()
         self.setup_resource_management_tab()
@@ -96,9 +97,16 @@ class Exercise1(QMainWindow):
 
     def setup_product_form(self):
         # Form layout
-        self.product_form_layout = QHBoxLayout()
+        self.product_form_layout = QVBoxLayout()
         self.product_management_layout.addLayout(self.product_form_layout)
-        # Form fields
+
+        # First box for input fields
+        first_box_layout = QHBoxLayout()
+        self.product_form_layout.addLayout(first_box_layout)
+
+        left_box_layout = QVBoxLayout()
+        first_box_layout.addLayout(left_box_layout)
+
         self.name_input = QLineEdit()
         self.selling_price_input = QDoubleSpinBox()
         self.selling_price_input.setMaximum(999999.99)
@@ -108,48 +116,69 @@ class Exercise1(QMainWindow):
         self.machine_time_input.setMaximum(999999)
 
         self.product_fields = [self.name_input, self.selling_price_input, self.human_work_time_input,
-                               self.machine_time_input]
+                            self.machine_time_input]
 
         # Connect each field's textChanged signal
         for field in self.product_fields:
             field.textChanged.connect(lambda: self.update_button_state(self.product_fields, self.add_button,
-                                                                       "Please fill in all fields to add a product."))
+                                                                    "Please fill in all fields to add a product."))
 
-        self.product_form_layout.addWidget(QLabel("Name:"))
-        self.product_form_layout.addWidget(self.name_input)
+        left_box_layout.addWidget(QLabel("Name:"))
+        left_box_layout.addWidget(self.name_input)
 
-        self.product_form_layout.addWidget(QLabel("Selling Price:"))
-        self.product_form_layout.addWidget(self.selling_price_input)
+        left_box_layout.addWidget(QLabel("Selling Price:"))
+        left_box_layout.addWidget(self.selling_price_input)
 
-        self.product_form_layout.addWidget(QLabel("Human Work Time:"))
-        self.product_form_layout.addWidget(self.human_work_time_input)
+        left_box_layout.addWidget(QLabel("Human Work Time:"))
+        left_box_layout.addWidget(self.human_work_time_input)
 
-        self.product_form_layout.addWidget(QLabel("Machine Time:"))
-        self.product_form_layout.addWidget(self.machine_time_input)
+        left_box_layout.addWidget(QLabel("Machine Time:"))
+        left_box_layout.addWidget(self.machine_time_input)
+
+        # Button on the right side
+        right_box_layout = QVBoxLayout()
+        first_box_layout.addLayout(right_box_layout)
 
         self.manage_resources_btn = QPushButton("Needed Materials")
         self.manage_resources_btn.setFont(QFont("Montserrat", 7))
-        self.manage_resources_btn.setFixedSize(100, 40)
+        #self.manage_resources_btn.setFixedSize(100, 40)
         self.manage_resources_btn.setStyleSheet(
-            f"background-color: {CALCULATE_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
+            "QPushButton { background-color: #E8751A; color: white; border: none; border-radius: 10px; font-size: 10pt; padding: 11px; }"
+            "QPushButton:hover { background-color: #BE7B72; }")
         self.manage_resources_btn.clicked.connect(self.manage_product_resources)
-        self.product_form_layout.addWidget(self.manage_resources_btn)
+        right_box_layout.addWidget(self.manage_resources_btn)
 
-        # Add and Delete buttons
+    
+        # Second box for the three other buttons
+        second_box_layout = QHBoxLayout()
+        self.product_form_layout.addLayout(second_box_layout)
+
         self.add_button = QPushButton("Add Product")
-        self.add_button.setStyleSheet(f"background-color: {ADD_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
+        self.add_button.setStyleSheet(
+            "QPushButton { background-color: #0A6847; color: white; border: none; border-radius: 10px; font-size: 10pt; padding: 11px; }"
+            "QPushButton:hover { background-color: #FFE0B5; }"
+        )
         self.add_button.clicked.connect(self.add_product)
-        self.product_management_layout.addWidget(self.add_button)
+        second_box_layout.addWidget(self.add_button)
+
 
         self.delete_button = QPushButton("Delete Selected Product")
-        self.delete_button.setStyleSheet(f"background-color: {REMOVE_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
+        self.delete_button.setStyleSheet(
+            "QPushButton { background-color: #C40C0C; color: white; border: none; border-radius: 10px; font-size: 10pt; padding: 11px; }"
+            "QPushButton:hover { background-color: #FFE0B5; }"
+        )
         self.delete_button.clicked.connect(self.delete_product)
-        self.product_management_layout.addWidget(self.delete_button)
+        second_box_layout.addWidget(self.delete_button)
 
-        # Placeholder for Optimization button (Gurobi integration)
         self.optimize_button = QPushButton("Optimize")
+        self.optimize_button.setStyleSheet(
+            "QPushButton { background-color: #1E0342; color: white; border: none; border-radius: 10px; font-size: 10pt; padding: 11px; }"
+            "QPushButton:hover { background-color: #FFE0B5; }"
+        )
         self.optimize_button.clicked.connect(self.optimize_production_plan)
-        self.product_management_layout.addWidget(self.optimize_button)
+        self.product_form_layout.addWidget(self.optimize_button)
+
+
 
     def setup_resource_table(self):
         self.resource_table_widget = QLabel(self.resource_management_tab)  # Use QLabel as the container
@@ -181,6 +210,10 @@ class Exercise1(QMainWindow):
         self.resource_form_layout = QHBoxLayout()
         self.resource_management_layout.addLayout(self.resource_form_layout)
 
+        # Left half layout for material name and quantity inputs
+        left_half_layout = QVBoxLayout()
+        self.resource_form_layout.addLayout(left_half_layout)
+
         self.resource_name_input = QLineEdit()
         self.quantity_available_input = QSpinBox()
         self.quantity_available_input.setMaximum(99999999)
@@ -189,26 +222,37 @@ class Exercise1(QMainWindow):
         for field in self.resource_fields:
             field.textChanged.connect(
                 lambda: self.update_button_state(self.resource_fields, self.add_resource_button,
-                                                 "Please enter a valid name and quantity to add a resource."))
+                                                "Please enter a valid name and quantity to add a resource."))
 
-        self.resource_form_layout.addWidget(QLabel("Material Name:"))
-        self.resource_form_layout.addWidget(self.resource_name_input)
+        left_half_layout.addWidget(QLabel("Material Name:"))
+        left_half_layout.addWidget(self.resource_name_input)
 
-        self.resource_form_layout.addWidget(QLabel("Quantity Available:"))
-        self.resource_form_layout.addWidget(self.quantity_available_input)
+        left_half_layout.addWidget(QLabel("Quantity Available:"))
+        left_half_layout.addWidget(self.quantity_available_input)
+
+        # Right half layout for buttons
+        right_half_layout = QVBoxLayout()
+        self.resource_form_layout.addLayout(right_half_layout)
 
         self.add_resource_button = QPushButton("Add Material")
         self.add_resource_button.clicked.connect(self.add_resource)
-        self.add_resource_button.setStyleSheet(f"background-color: {ADD_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
-        self.resource_management_layout.addWidget(self.add_resource_button)
+        self.add_resource_button.setStyleSheet(
+            "QPushButton { background-color: #0A6847; color: white; border: none; border-radius: 10px; font-size: 10pt; padding: 11px; }"
+            "QPushButton:hover { background-color: #FFE0B5; }"
+        )
+        right_half_layout.addWidget(self.add_resource_button)
         self.update_button_state(self.resource_fields, self.add_resource_button,
-                                 "Please enter a valid name and quantity to add a resource.")
+                                "Please enter a valid name and quantity to add a resource.")
 
         self.delete_resource_button = QPushButton("Delete Selected Materials")
         self.delete_resource_button.clicked.connect(self.delete_resource)
         self.delete_resource_button.setStyleSheet(
-            f"background-color: {REMOVE_BUTTON_COLOR}; color: {BUTTON_TEXT_COLOR};")
-        self.resource_management_layout.addWidget(self.delete_resource_button)
+            "QPushButton { background-color: #C40C0C; color: white; border: none; border-radius: 10px; font-size: 10pt; padding: 11px; }"
+            "QPushButton:hover { background-color: #FFE0B5; }"
+        )
+        self.resource_form_layout.addWidget(self.delete_resource_button)
+
+
 
     def load_data_into_ui(self):
         self.products = load_products()
@@ -234,12 +278,6 @@ class Exercise1(QMainWindow):
         self.product_table.setItem(row_position, 1, QTableWidgetItem(str(self.selling_price_input.value())))
         self.product_table.setItem(row_position, 2, QTableWidgetItem(str(self.human_work_time_input.value())))
         self.product_table.setItem(row_position, 3, QTableWidgetItem(str(self.machine_time_input.value())))
-
-        # FIXME: We removed this to prevent the product being saved twice (here and when adding ressources). See if there's a better way
-        # new_product = {"name": self.name_input.text(), "selling_price": self.selling_price_input.text(),
-        #                "human_work_time": self.human_work_time_input.text(),
-        #                "machine_time": self.machine_time_input.text(), }
-        # add_product(new_product)
 
         # Clear input fields after adding
         self.name_input.clear()

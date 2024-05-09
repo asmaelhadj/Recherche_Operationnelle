@@ -87,7 +87,7 @@ class KnapsackApp(QWidget):
         self.capacityLabel.setStyleSheet(label_style)
         self.capacityLabel.setFont(label_font)
 
-        lineedit_style = f"color: #FFFFFF; background-color: #2E2E2E; border: 2px solid #FFFFFF; border-radius: 5px;"
+        lineedit_style = f"color: #FFFFFF; background-color: #EEF7FF; border: 2px solid #FFFFFF; border-radius: 5px;"
         lineedit_font = font
         self.valuesEdit.setStyleSheet(lineedit_style)
         self.valuesEdit.setFont(lineedit_font)
@@ -96,7 +96,7 @@ class KnapsackApp(QWidget):
         self.capacityEdit.setStyleSheet(lineedit_style)
         self.capacityEdit.setFont(lineedit_font)
 
-        textedit_style = f"color: #FFFFFF; background-color: #2E2E2E; border: 2px solid #FFFFFF; border-radius: 5px;"
+        textedit_style = f"color: #FFFFFF; background-color: #EEF7FF; border: 2px solid #FFFFFF; border-radius: 5px;"
         textedit_font = font
         self.resultTextEdit.setStyleSheet(textedit_style)
         self.resultTextEdit.setFont(textedit_font)
